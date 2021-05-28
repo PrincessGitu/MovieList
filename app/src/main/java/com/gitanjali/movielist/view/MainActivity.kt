@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
 
         movieViewModel=ViewModelProvider(this).get(MovieViewModel::class.java)
 
-        val recyclerView: RecyclerView = bindingObj.recycleViewList
+        val recyclerView: RecyclerView
+        recyclerView=  bindingObj.recycleViewList
         recyclerView.layoutManager=LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
         getMovieList()
     }//onCreate
 
-    private fun getMovieList(){
+    fun getMovieList(){
         movieViewModel!!.getMutableLiveMovieData().observe(this,Observer {
                 mv->movieAdapter!!.setMovieList(mv as ArrayList<Movie>)
         })
@@ -73,7 +74,8 @@ class MainActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
 
     override fun onItemClick(movie: Movie) {
         Toast.makeText(this,"Movie Name :  ${movie.movieName}",Toast.LENGTH_SHORT).show()
-
+        Log.e("Movie Name :",movie.movieName.toString())
+        Log.e("Movie Name1 :",movie.movieName.toString())
 
     }
 
