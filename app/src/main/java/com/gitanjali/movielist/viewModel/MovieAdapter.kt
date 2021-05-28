@@ -14,7 +14,7 @@ import com.gitanjali.movielist.model.Movie
 /**
  * Created by Gitanjali Ghangale on 6/3/2020.
  */
-class MovieAdapter(val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() , Filterable {
+class MovieAdapter(private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() , Filterable {
 
 
     var mListData = ArrayList<Movie>()
@@ -30,7 +30,7 @@ class MovieAdapter(val itemClickListener: OnItemClickListener) : RecyclerView.Ad
 
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val binding: ContentListDataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+        val binding: ContentListDataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
             R.layout.content_list_data, parent, false)
 
         return MovieViewHolder(binding)
@@ -53,7 +53,7 @@ class MovieAdapter(val itemClickListener: OnItemClickListener) : RecyclerView.Ad
         notifyDataSetChanged()
     }
 
-    override fun getFilter(): Filter? {
+    override fun getFilter(): Filter {
         return object : Filter() {
             @SuppressLint("DefaultLocale")
             override fun performFiltering(charSequence: CharSequence): FilterResults {

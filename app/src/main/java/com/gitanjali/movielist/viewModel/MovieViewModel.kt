@@ -2,6 +2,7 @@ package com.gitanjali.movielist.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -72,6 +73,8 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     fun getMutableLiveMovieData(): MutableLiveData<List<Movie>> {
         Log.e("Response","="+data)
         try {
+
+
             val jsonObject=JSONObject(data)
             val jsonArray=jsonObject.getJSONArray("mList")
             if(jsonArray.length()>0){
